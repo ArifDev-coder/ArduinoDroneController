@@ -54,5 +54,8 @@ int mapJoystickValue(int val, int lower, int middle, int, upper, bool isReverse 
 
 void loop()
 {
-  data.throttle = mapJoystick
+  data.throttle = mapJoystickValue(analogRead(X2), int lower, int middle, int, int);
+  data.yaw = mapJoystickValue(analogRead(Y2), int lower, int middle, int, int);
+  data.pitch = mapJoystickValue(analogRead(X1), int lower, int middle, int, int);
+  data.roll = mapJoystickValue(analogRead(Y1), int lower, int middle, int, int);
 }
