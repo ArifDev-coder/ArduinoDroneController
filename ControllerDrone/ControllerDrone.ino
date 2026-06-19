@@ -23,7 +23,7 @@ void resetData()
   data.throttle = 0;
   data.yaw = 0;
   data.pitch = 0;
-  data .roll = 0;
+  data.roll = 0;
 }
 
 void setup()
@@ -31,7 +31,6 @@ void setup()
   resetData();
 
   Serial.begin(9600);
-
 
 }
 
@@ -54,5 +53,8 @@ int mapJoystickValue(int val, int lower, int middle, int, upper, bool isReverse 
 
 void loop()
 {
-  data.throttle = mapJoystick
+  data.throttle = mapJoystick(analogRead(X2), 0, 394, 1014, true);
+  data.yaw = mapJoystick(analogRead(Y2), 0, 408, 1007, true);
+  data.pitch = mapJoystick(analogRead(X1), 0, 386, 911, true);
+  data.roll = mapJoystick(analogRead(Y1), 0, 413, 991, true);
 }
