@@ -14,28 +14,28 @@ struct ControlData
   byte yaw;
   byte pitch;
   byte roll;
-}
+};
 
 ControlData data;
 
 void resetData()
 {
   data.throttle = 0;
-  data.yaw = 0;
-  data.pitch = 0;
-  data.roll = 0;
+  data.yaw = 127;
+  data.pitch = 127;
+  data.roll = 127;
 }
 
 void setup()
 {
   resetData();
 
-  Serial.begin(9600);
+  Serial.begin(115200);
 
 }
 
 // Remapping value mentah joystick
-int mapJoystickValue(int val, int lower, int middle, int, upper, bool isReverse = false)
+int mapJoystickValue(int val, int lower, int middle, int upper, bool isReverse = false)
 {
   val = constrain(val, lower, upper);
 
@@ -53,8 +53,14 @@ int mapJoystickValue(int val, int lower, int middle, int, upper, bool isReverse 
 
 void loop()
 {
-  data.throttle = mapJoystick(analogRead(X2), 0, 394, 1014, true);
-  data.yaw = mapJoystick(analogRead(Y2), 0, 408, 1007, true);
-  data.pitch = mapJoystick(analogRead(X1), 0, 386, 911, true);
-  data.roll = mapJoystick(analogRead(Y1), 0, 413, 991, true);
+  data.throttle = mapJoystickValue(analogRead(X2), 0, 390, 1014, true);
+  data.yaw = mapJoystickValue(analogRead(Y2), 0, 408, 1007, true);
+  data.pitch = mapJoystickValue(analogRead(X1), 0, 386, 911, true);
+  data.roll = mapJoystickValue(analogRead(Y1), 0, 413, 991, true);
+
+
+  Serial.print(data.throttle); Serial.print(",");
+  Serial.print(data.yaw);      Serial.print(",");
+  Serial.print(data.pitch);    Serial.print(",");
+  Serial.println(data.roll);
 }

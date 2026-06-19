@@ -17,14 +17,14 @@ struct Value
 Value valX1, valY1, valX2, valY2;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
 
 
-    for (int i = 0; i < 10; i++) {
-      analogRead(X1); analogRead(X2);
-      analogRead(Y1); analogRead(Y2);
-      delay(10);
-    }
+  for (int i = 0; i < 10; i++) {
+    analogRead(X1); analogRead(X2);
+    analogRead(Y1); analogRead(Y2);
+    delay(10);
+  }
 }
 
 void minMaxRawChecker(const char* label, Value& val, int pin)
