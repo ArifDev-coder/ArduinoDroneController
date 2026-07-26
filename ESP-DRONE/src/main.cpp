@@ -2,9 +2,13 @@
 #include <WiFi.h>
 #include <WiFiUdp.h>
 
+const char* ssid = "Z_DRONE";
+const char* pass = "Z12345678";
+
 void setup()
 {
-    Serial.begin(9600);
+    WiFi.mode(WIFI_AP);
+    WiFi.softAP(ssid, pass);
 }
 
 void loop()
